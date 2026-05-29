@@ -11,7 +11,6 @@ if(!isset($_SESSION['user_id']))
 $action = $_POST['action'];
 if($action == 'create')
 {
-    //Validatie
     $title = $_POST['title'];
     if(empty($title))
     {
@@ -24,14 +23,7 @@ if($action == 'create')
         $errors[] = "Vul een themagebied in!";
     }
 
-    if(isset($_POST['fast_pass']))
-    {
-        $fast_pass = true;
-    }
-    else
-    {
-        $fast_pass = false;
-    }
+    $fast_pass = isset($_POST['fast_pass']) ? 1 : 0;
 
     $target_dir = "../../img/attracties/";
     $target_file = $_FILES['img_file']['name'];
@@ -40,17 +32,14 @@ if($action == 'create')
         $errors[] = "Bestand bestaat al!";
     }
 
-    //Evt. errors dumpen
     if(isset($errors))
     {
         var_dump($errors);
         die();
     }
 
-    //Plaats geuploade bestand in map
     move_uploaded_file($_FILES['img_file']['tmp_name'], $target_dir . $target_file);
 
-    //Query
     require_once 'conn.php';
     $query = "INSERT INTO rides (title, themeland, fast_pass, img_file) VALUES(:title, :themeland, :fast_pass, :img_file)";
     $statement = $conn->prepare($query);
@@ -70,14 +59,8 @@ if($action == "update")
     $id = $_POST['id'];
     $title = $_POST['title'];
     $themeland = $_POST['themeland'];
-    if(isset($_POST['fast_pass']))
-    {
-        $fast_pass = true;
-    }
-    else
-    {
-        $fast_pass = false;
-    }
+
+    $fast_pass = isset($_POST['fast_pass']) ? 1 : 0;
 
     if(empty($_FILES['img_file']['name']))
     {
@@ -96,14 +79,12 @@ if($action == "update")
         move_uploaded_file($_FILES['img_file']['tmp_name'], $target_dir . $target_file);
     }
 
-    //Evt. errors dumpen
     if(isset($errors))
     {
         var_dump($errors);
         die();
     }
 
-    //Query
     require_once 'conn.php';
     $query = "UPDATE rides SET title = :title, themeland = :themeland, fast_pass = :fast_pass, img_file = :img_file WHERE id = :id";
     $statement = $conn->prepare($query);
