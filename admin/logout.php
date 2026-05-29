@@ -1,4 +1,6 @@
 <?php
+require_once 'backend/config.php';
+session_start();
 session_destroy();
-header("Location: index.php");
+header("Location: $base_url/index.php");
 exit;
