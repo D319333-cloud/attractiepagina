@@ -25,7 +25,34 @@ require_once 'admin/backend/config.php';
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia modi dolore magnam! Iste libero voluptatum autem, sapiente ullam earum nostrum sed magnam vel laboriosam quibusdam, officia, esse vitae dignissimos nulla?
         </aside>
         <main>
-            <!-- hier komen de attractiekaartjes -->
+            <h1>Onze Attracties</h1>
+            
+            <div class="attracties">
+                <?php
+                require_once 'admin/backend/conn.php';
+                $query = "SELECT * FROM rides ORDER BY title ASC";
+                $statement = $conn->prepare($query);
+                $statement->execute();
+                $rides = $statement->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach($rides as $ride){
+                ?>
+                    <div class="attractie">
+                        <!-- Dynamische afbeelding uit de database -->
+                        <img src="img/attracties/<?php echo $ride['img_file']; ?>" alt="<?php echo $ride['title']; ?>">
+                        
+                        <div class="attractie-info">
+                            <!-- Themagebied met hoofdletter -->
+                            <h3><?php echo ucfirst($ride['themeland']); ?></h3>
+                            <h2><?php echo $ride['title']; ?></h2>
+                            <p><?php echo $ride['description']; ?></p>
+                            <p class="length"><?php echo $ride['min_length']; ?>cm minimale lengte</p>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
         </main>
     </div>
 

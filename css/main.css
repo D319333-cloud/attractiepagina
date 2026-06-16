@@ -1,6 +1,6 @@
-/*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
+/*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com */
 
-/* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/* main.css 2.1.0 | MIT License | https://github.com */
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -19,10 +19,10 @@ html {
 
 /*
  * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
+ * https://twitter.com
  *
  * Vendor-prefixed and regular ::selection selectors cannot be combined:
- * https://stackoverflow.com/a/16982510/7133471
+ * https://stackoverflow.com
  *
  * Customize the background color to match your design.
  */
@@ -53,7 +53,7 @@ hr {
 /*
  * Remove the gap between audio, canvas, iframes,
  * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
+ * https://github.com
  */
 
 audio,
@@ -178,9 +178,6 @@ th{
 }
 
 
-
-
-
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -196,11 +193,11 @@ th{
 
 /*
  * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ * https://snook.ca
  *
  * 1. For long content, line feeds are not interpreted as spaces and small width
  *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ *    https://medium.com
  */
 
 .sr-only {
@@ -219,7 +216,7 @@ th{
 /*
  * Extends the .sr-only class to allow the element
  * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
+ * https://drupal.org
  */
 
 .sr-only.focusable:active,
@@ -283,7 +280,7 @@ th{
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
+   https://phpied.com
    ========================================================================== */
 
 @media print {
@@ -331,7 +328,7 @@ th{
 
   /*
    * Printing Tables:
-   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+   * https://archive.org
    */
   thead {
     display: table-header-group;
@@ -355,3 +352,134 @@ th{
   }
 }
 
+/* ==========================================================================
+   ATTRACTIE GRID & CARDS (Geoptimaliseerd volgens de schets)
+   ========================================================================== */
+
+/* Hoofdgrid: 3 gelijke kolommen */
+.attracties {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Basis styling voor de witte kaartjes */
+.attractie {
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Zorgt dat de afbeelding netjes aansluit en de bovenkant vult */
+.attracties .attractie img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Content wrapper binnen de kaart */
+.attractie-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* DE BREDE KAART: Neemt volgens de schets 2 kolommen in beslag */
+.attractie.attractie-breed {
+  grid-column: span 2;
+  flex-direction: row; /* Plaatst afbeelding links en info rechts */
+}
+
+/* Specifieke afbeelding grootte binnen de brede kaart */
+.attractie.attractie-breed img {
+  width: 50%;
+  height: 100%;
+  min-height: 300px;
+}
+
+/* Info container binnen de brede kaart */
+.attractie.attractie-breed .attractie-info {
+  width: 50%;
+  justify-content: center;
+}
+
+/* Typografie en details binnen de kaarten */
+.attractie h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #718096;
+  margin: 0 0 0.5rem 0;
+}
+
+.attractie h2 {
+  font-family: 'Oxanium', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #114b2b; /* Diepgroene accentkleur */
+  margin: 0 0 1rem 0;
+}
+
+.attractie p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+/* Onderste rij in het kaartje */
+.attractie-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  border-top: 1px solid #edf2f7;
+  padding-top: 1rem;
+}
+
+.attractie .length {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  margin: 0;
+}
+
+/* Groene Fast Pass badge (onderaan de groene knop op je schets) */
+.fast-pass-badge {
+  background-color: #3ed67d;
+  color: #ffffff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  font-family: 'Oxanium', sans-serif;
+}
+
+/* RESPONSIVE DESIGN (Zorgt dat het grid netjes blijft op mobiel) */
+@media (max-width: 900px) {
+  .attracties {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .attracties {
+    display: block;
+  }
+  .attractie {
+    margin-bottom: 2rem;
+  }
+  .attractie.attractie-breed {
+    flex-direction: column;
+  }
+  .attractie.attractie-breed img {
+    width: 100%;
+    height: 220px;
+  }
+}
